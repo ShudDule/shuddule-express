@@ -1,0 +1,27 @@
+{
+  "name": "@shuddule/shuddule-express",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ShudDule/shuddule-express.git"
+  },
+  "bugs": {
+    "url": "https://github.com/ShudDule/shuddule-express/issues",
+    "email": "jetsadawijit@outlook.com"
+  },
+  "version": "1.0.0",
+  "main": "app.js",
+  "scripts": {
+    "start": "node app.js"
+  },
+  "keywords": [],
+  "author": {
+    "name": "Jetsada Wijit",
+    "email": "jetsadawijit@outlook.com",
+    "url": "https://github.com/JetsadaWijit"
+  },
+  "license": "MIT",
+  "description": "",
+  "dependencies": {
+    "express": "^4.21.1"
+  }
+}

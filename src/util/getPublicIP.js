@@ -1,5 +1,4 @@
 const https = require('https');
-const fs = require('fs');
 
 function getPublicIP() {
     return new Promise((resolve, reject) => {
@@ -11,20 +10,6 @@ function getPublicIP() {
     });
 }
 
-function mkdirRecursive(dirPath) {
-  return new Promise((resolve, reject) => {
-    fs.mkdir(dirPath, { recursive: true }, (err) => {
-      if (err) {
-        reject(err);
-      } else {
-        resolve();
-      }
-    });
-  });
-}
-
 module.exports = {
-  getPublicIP,
-  mkdirRecursive
+    getPublicIP
 };
-

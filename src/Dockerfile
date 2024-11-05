@@ -2,6 +2,7 @@
 FROM node:18
 
 # Enviroment
+ENV HOST_URL http://localhost
 ENV PORT 3000
 
 # Create app directory

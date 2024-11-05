@@ -3,5 +3,7 @@ services:
     build: ./src
     ports:
       - "3000:3000"
+    environment:
+      - HOST_URL = "your_url"
     volumes:
       - ./src:/usr/src/app

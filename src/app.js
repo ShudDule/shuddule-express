@@ -31,7 +31,7 @@ async function main() {
     });
 
     app.listen(port, () => {
-        console.log(`Server running at ${hostUrl}:${port}`);
+        console.log(`Server running at ${hostUrl}`);
     });
 }
 

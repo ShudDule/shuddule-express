@@ -12,6 +12,9 @@ const homeRoute = require('./routes/home');
 
 const app = express();
 
+app.set('view engine', 'ejs');
+app.set('views', __dirname + '/views'); // Specify the views directory
+
 const hostUrl = process.env.HOST_URL || 'http://localhost';
 const port = process.env.PORT || 3000;
 

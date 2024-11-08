@@ -16,13 +16,14 @@ async function initializeAllowedIPs(getPublicIP) {
     console.log('Your public IP address is:', hostIp);
     
     // Load allowed IPs from JSON
-    const savedIPs = readAllowedIPs();
+    const allowedIpPath = 'data/allowed_ip.json';
+    const savedIPs = await readAllowedIPs(allowedIpPath); // Assuming readAllowedIPs returns a Promise
     savedIPs.forEach(ip => allowedIPs.add(ip));
 
     // Add host IP if not in the list, then save if added
     if (!allowedIPs.has(hostIp)) {
         allowedIPs.add(hostIp);
-        writeAllowedIPs(allowedIPs);
+        await writeAllowedIPs(allowedIpPath, allowedIPs);
     }
 }
 

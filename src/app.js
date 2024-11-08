@@ -1,22 +1,33 @@
 const express = require('express');
-const { getPublicIP } = require('./util/getPublicIP');
 
+const { getPublicIP } = require('./util/getPublicIP');
+const { ensureFileExists } = require('./util/fileUtils');
 const {
     ipRestrictionMiddleware,
     initializeAllowedIPs
 } = require('./middleware/ipRestriction');
-
 const { loggingMiddleware } = require('./middleware/logging');
+
 const homeRoute = require('./routes/home');
 
 const app = express();
 
 const hostUrl = process.env.HOST_URL || 'http://localhost';
-
 const port = process.env.PORT || 3000;
+
+// Prepare file
+const pathData = 'data';
+const files = [`${pathData}/allowed_ip.json`];
+
+async function prepareFiles() {
+    for (const file of files) {
+        await ensureFileExists(file);
+    }
+}
 
 async function main() {
     try {
+        await prepareFiles();
         await initializeAllowedIPs(getPublicIP);
     } catch (error) {
         console.error('Error retrieving public IP:', error);

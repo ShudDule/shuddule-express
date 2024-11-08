@@ -1,3 +1,4 @@
+const { readAllowedIPs, writeAllowedIPs } = require('../util/fileUtils');
 const allowedIPs = new Set();
 
 function ipRestrictionMiddleware(req, res, next) {
@@ -13,7 +14,16 @@ function ipRestrictionMiddleware(req, res, next) {
 async function initializeAllowedIPs(getPublicIP) {
     const hostIp = process.env.HOST_IP || await getPublicIP();
     console.log('Your public IP address is:', hostIp);
-    allowedIPs.add(hostIp);
+    
+    // Load allowed IPs from JSON
+    const savedIPs = readAllowedIPs();
+    savedIPs.forEach(ip => allowedIPs.add(ip));
+
+    // Add host IP if not in the list, then save if added
+    if (!allowedIPs.has(hostIp)) {
+        allowedIPs.add(hostIp);
+        writeAllowedIPs(allowedIPs);
+    }
 }
 
 module.exports = {
